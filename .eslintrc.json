@@ -80,6 +80,16 @@
       }
     ],
     "react/forbid-prop-types": 0,
-    "react/no-did-update-set-state": 0
+    "react/no-did-update-set-state": 0,
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "@/components",
+          "@/constants",
+          "@/screens"
+        ]
+      }
+    ]
   }
 }
