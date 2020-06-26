@@ -1,6 +1,12 @@
 import styled from 'styled-components/native';
 import { colors, layout } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Animated } from 'react-native';
+
+export const AnimatableContainer = styled(Animated.View)`
+  ${layout.shadow}
+  overflow: hidden;
+`;
 
 export const Container = styled.TouchableOpacity.attrs(() => ({
   hitSlop: layout.hitSlop,
@@ -8,9 +14,7 @@ export const Container = styled.TouchableOpacity.attrs(() => ({
 }))``;
 
 export const Card = styled.ImageBackground.attrs(() => ({ imageStyle: { borderRadius: 20 } }))`
-  ${layout.shadow}
   margin: 0px 25px;
-  margin-bottom: 25px;
   padding-bottom: 100px;
   background-color: ${colors.yellow(0.8)};
   border-radius: 20px;
