@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '@/components';
 import { colors, images } from '@/constants';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -14,9 +14,19 @@ import {
   LocationContainer,
   Location,
 } from './styles';
-import events from './mockApi.json';
+
+import eventsMock from './mockApi.json';
 
 export default () => {
+  const [events, setEvents] = useState(eventsMock);
+
+  const debounceEvent = (fn, wait = 1000, time) => (...args) =>
+    clearTimeout(time, time = setTimeout(() => fn(...args), wait)); // eslint-disable-line no-param-reassign, implicit-arrow-linebreak, max-len
+
+  const searchEvent = text => e => e.title.toLowerCase().indexOf(text.toLowerCase()) !== -1;
+
+  const handleSearch = (text = '') => setEvents(eventsMock.filter(searchEvent(text)));
+
   return (
     <Container>
       <Header>
@@ -29,10 +39,10 @@ export default () => {
         </HeaderTop>
         <SearchContainer>
           <Feather name="search" color={colors.white()} size={24} />
-          <SearchInput placeholder="Search events" />
+          <SearchInput placeholder="Search events" onChangeText={debounceEvent(handleSearch)} />
         </SearchContainer>
       </Header>
-      <Body>
+      <Body showsVerticalScrollIndicator={false}>
         <Title>Eventos</Title>
         {events.map(event => <Card event={event} />)}
       </Body>
