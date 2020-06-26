@@ -2,11 +2,13 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
 
-import SelectedButton from './components/SelectedButton';
+import { colors } from '@/constants';
 
-import HomeScreen from './screens/Home';
-import ClendarScreen from './screens/Calendar';
-import SettingScreen from './screens/Settings';
+import { SelectedButton } from '@/components';
+
+import HomeScreen from '@/screens/Home';
+import ClendarScreen from '@/screens/Calendar';
+import SettingScreen from '@/screens/Settings';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,9 +41,9 @@ export default () => {
     <Tab.Navigator
       screenOptions={handleScreenOptions}
       tabBarOptions={{
-        style: { backgroundColor: '#fff', borderTopColor: 'rgba(255, 255, 255, 0.2)' },
-        inactiveTintColor: '#333',
-        activeTintColor: '#EEC548',
+        style: { backgroundColor: colors.lightWhite(), borderTopColor: colors.lightWhite(0.2) },
+        inactiveTintColor: colors.black(),
+        activeTintColor: colors.yellow(),
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Início' }} />

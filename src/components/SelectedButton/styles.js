@@ -1,16 +1,17 @@
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { colors } from '@/constants';
 
 export const Button = styled(LinearGradient).attrs(() => ({
-  colors: ['#FFED50', '#EEC548'],
+  colors: [colors.lightYellow(), colors.yellow()],
   start: [1, 0.2],
 }))`
-  border-color: #FFF;
+  border-color: ${colors.lightWhite()};
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
   border-width: 5px;
   margin-top: -10px;
-  width: 50px;
   height: 50px;
-  border-radius: 25px;
-  align-items: center;
-  justify-content: center;
+  width: 50px;
 `;
