@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
 import { Card } from '@/components';
 import { colors, images } from '@/constants';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import eventsMock from './mockApi.json';
 import {
-  Header,
   Body,
   Container,
-  Title,
+  Header,
+  HeaderTop,
+  Location,
+  LocationContainer,
+  Logo,
   SearchContainer,
   SearchInput,
-  HeaderTop,
-  Logo,
-  LocationContainer,
-  Location,
+  Title,
 } from './styles';
-
-import eventsMock from './mockApi.json';
 
 export default () => {
   const [events, setEvents] = useState(eventsMock);
@@ -25,7 +24,15 @@ export default () => {
 
   const searchEvent = text => e => e.title.toLowerCase().indexOf(text.toLowerCase()) !== -1;
 
-  const handleSearch = (text = '') => setEvents(eventsMock.filter(searchEvent(text)));
+  const sortSearchedEvents = text => (a, b) => {
+    if (a.title.indexOf(text.toLowerCase()) > b.title.indexOf(text.toLowerCase())) return 1;
+    if (a.title.indexOf(text.toLowerCase()) < b.title.indexOf(text.toLowerCase())) return -1;
+    return 0;
+  };
+
+  const handleSearch = (text = '') => setEvents(eventsMock
+    .filter(searchEvent(text))
+    .sort(sortSearchedEvents(text)));
 
   return (
     <Container>
