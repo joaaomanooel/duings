@@ -1,12 +1,3 @@
-import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import Calendar from './Calendar';
 
-// import { Container } from './styles';
-
-export default () => {
-  return (
-    <SafeAreaView>
-      <Text>Agenda</Text>
-    </SafeAreaView>
-  );
-};
+export default Calendar;

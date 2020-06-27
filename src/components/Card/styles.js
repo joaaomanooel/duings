@@ -6,6 +6,8 @@ import { Animated } from 'react-native';
 export const AnimatableContainer = styled(Animated.View)`
   ${layout.shadow}
   overflow: hidden;
+  margin: 0px 25px;
+  margin-bottom: 25px;
 `;
 
 export const Container = styled.TouchableOpacity.attrs(() => ({
@@ -14,7 +16,6 @@ export const Container = styled.TouchableOpacity.attrs(() => ({
 }))``;
 
 export const Card = styled.ImageBackground.attrs(() => ({ imageStyle: { borderRadius: 20 } }))`
-  margin: 0px 25px;
   padding-bottom: 100px;
   background-color: ${colors.yellow(0.8)};
   border-radius: 20px;
