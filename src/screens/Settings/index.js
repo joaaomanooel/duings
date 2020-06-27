@@ -1,12 +1,3 @@
-import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import Settings from './Settings';
 
-// import { Container } from './styles';
-
-export default () => {
-  return (
-    <SafeAreaView>
-      <Text>Ajustes</Text>
-    </SafeAreaView>
-  );
-};
+export default Settings;
