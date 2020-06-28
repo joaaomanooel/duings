@@ -85,6 +85,7 @@
       "error",
       {
         "ignore": [
+          "@/mockApi.json",
           "@/components",
           "@/constants",
           "@/screens"
