@@ -1,4 +1,4 @@
-import { Card } from '@/components';
+import { CardWithImage } from '@/components';
 import * as GeoLocation from 'expo-location';
 import { colors, images } from '@/constants';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -73,7 +73,7 @@ export default () => {
       </Header>
       <Body showsVerticalScrollIndicator={false}>
         <Title>Eventos</Title>
-        {events.map(event => <Card event={event} />)}
+        {events.map(event => <CardWithImage event={event} />)}
       </Body>
     </Container>
   );

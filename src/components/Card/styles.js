@@ -1,49 +1,70 @@
 import styled from 'styled-components/native';
 import { colors, layout } from '@/constants';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Animated } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import AnimatedView from '../AnimatedView';
 
-export const AnimatableContainer = styled(Animated.View)`
-  ${layout.shadow}
+export const AnimatableContainer = styled(AnimatedView)`
+  align-self: center;
+  border-radius: 10px;
   overflow: hidden;
-  margin: 0px 25px;
-  margin-bottom: 25px;
+  ${layout.shadow}
 `;
 
 export const Container = styled.TouchableOpacity.attrs(() => ({
   hitSlop: layout.hitSlop,
   activeOpacity: 0.7,
-}))``;
-
-export const Card = styled.ImageBackground.attrs(() => ({ imageStyle: { borderRadius: 20 } }))`
-  padding-bottom: 100px;
-  background-color: ${colors.yellow(0.8)};
-  border-radius: 20px;
-  min-height: 200px;
+}))`
+  padding: ${layout.scale() * 20}px;
+  background-color: ${colors.white()};
+  width: ${layout.screenWidth * 0.9}px;
+  height: ${layout.scale() * 100}px;
+  flex-direction: row;
+  align-self: center;
+  border-radius: 10px;
   overflow: hidden;
 `;
 
-export const Header = styled(LinearGradient).attrs(() => ({
-  colors: [colors.black(0.3), colors.black(0.05)],
-  start: [1, 0.2],
-}))`
-  background-color: ${colors.black(0.3)};
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  min-height: 80px;
-  padding: 20px;
+export const DateContainer = styled.View`
+  border-right-width: ${layout.scale() * 3}px;
+  border-right-color: ${colors.black()};
+  padding-right: ${layout.scale() * 20}px;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const Title = styled.Text`
-  text-shadow: 0px 4px 10px ${colors.black(0.25)};
-  color: ${colors.white()};
-  font-weight: bold;
-  font-size: 20px;
+export const DateBigText = styled.Text`
+  font-size: ${({ contentSize }) => contentSize * (layout.scale() * 24)}px;
+  color: ${colors.black()};
+  font-weight: 900;
 `;
 
-export const Discount = styled.Text`
-  text-shadow: 0px 4px 10px ${colors.black(0.25)};
-  color: ${colors.white()};
-  margin-top: 10px;
-  font-size: 14px;
+export const RightView = styled.View`
+  padding-left: ${layout.scale() * 20}px;
+  justify-content: space-between;
+  flex:1;
+`;
+
+export const Title = styled.Text.attrs({ ellipsizeMode: 'tail', numberOfLines: 1 })`
+  font-size: ${({ contentSize }) => contentSize * (layout.scale() * 16)}px;
+  color: ${colors.black()};
+  font-weight: 800;
+`;
+
+export const BottomView = styled.View`
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+`;
+
+export const Icon = styled(MaterialCommunityIcons).attrs(({ contentSize }) => ({
+  size: contentSize * layout.scale() * 20,
+  color: colors.yellow(),
+}))``;
+
+export const BottomText = styled.Text.attrs({ ellipsizeMode: 'tail', numberOfLines: 1 })`
+  font-size: ${({ contentSize }) => contentSize * (layout.scale() * 14)}px;
+  padding: ${layout.scale() * 5}px;
+  color: ${colors.black()};
+  font-weight: 400;
 `;
