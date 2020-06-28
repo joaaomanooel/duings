@@ -26,7 +26,7 @@ export const Container = styled.TouchableOpacity.attrs(() => ({
 
 export const DateContainer = styled.View`
   border-right-width: ${layout.scale() * 3}px;
-  border-right-color: ${colors.black()};
+  border-right-color: ${colors.yellow()};
   padding-right: ${layout.scale() * 20}px;
   justify-content: center;
   align-items: center;
