@@ -3,5 +3,6 @@ module.exports = ({
   AnimatedButton: require('./AnimatedButton').default,
   CardWithImage: require('./CardWithImage').default,
   Button: require('./Button').default,
+  Modal: require('./Modal').default,
   Card: require('./Card').default,
 });
