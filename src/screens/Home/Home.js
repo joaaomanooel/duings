@@ -18,7 +18,7 @@ import {
   Title,
 } from './styles';
 
-export default () => {
+export default ({ navigation }) => {
   const [events, setEvents] = useState(eventsMock);
   const [location, setLocation] = useState(null);
 
@@ -73,7 +73,12 @@ export default () => {
       </Header>
       <Body showsVerticalScrollIndicator={false}>
         <Title>Eventos</Title>
-        {events.map(event => <CardWithImage event={event} />)}
+        {events.map(event => (
+          <CardWithImage
+            event={event}
+            onPress={() => navigation.navigate('EventDetail', { event })}
+          />
+        ))}
       </Body>
     </Container>
   );

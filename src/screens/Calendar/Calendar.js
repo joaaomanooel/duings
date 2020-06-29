@@ -5,7 +5,7 @@ import eventsMock from '@/mockApi.json';
 
 import { Body, Cards, Container, Header, Title } from './styles';
 
-export default () => {
+export default ({ navigation }) => {
   const [events] = useState(eventsMock);
 
   const sortByDate = (a, b) => {
@@ -21,7 +21,9 @@ export default () => {
       </Header>
       <Body showsVerticalScrollIndicator={false}>
         <Cards>
-          {events.sort(sortByDate).map(event => <Card data={event} />)}
+          {events.sort(sortByDate).map(event => (
+            <Card data={event} onPress={() => navigation.navigate('EventDetail', { event })} />
+          ))}
         </Cards>
       </Body>
     </Container>
