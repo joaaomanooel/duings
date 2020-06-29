@@ -12,7 +12,7 @@ import {
   AnimatableContainer,
 } from './styles';
 
-export default React.memo(({ data = {}, size = 1 }) => {
+export default React.memo(({ data = {}, size = 1, onPress }) => {
   const date = new Date(data.date || null);
   const handleLocation = (location = '') => (location.length > 20
     ? `${location.substr(0, 20)}...`
@@ -20,7 +20,7 @@ export default React.memo(({ data = {}, size = 1 }) => {
 
   return (
     <AnimatableContainer>
-      <Container>
+      <Container onPress={onPress}>
         <DateContainer>
           <DateBigText contentSize={size}>{format(date, 'dd')}</DateBigText>
           <DateBigText contentSize={size}>{format(date, 'MM')}</DateBigText>
@@ -36,7 +36,7 @@ export default React.memo(({ data = {}, size = 1 }) => {
             </BottomView>
             <BottomView>
               <BottomText contentSize={size}>
-                {handleLocation('Porto Alegre')}
+                {handleLocation('Santa Vitória dos Palmares')}
               </BottomText>
               <Icon name="map-marker" contentSize={size} />
             </BottomView>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Animated, Easing } from 'react-native';
 import { Container, Title, Card, Header, Discount, AnimatableContainer } from './styles';
 
-export default ({ event }) => {
+export default React.memo(({ event, onPress }) => {
   const [opacity] = useState(new Animated.Value(0));
   const [marginBottom] = useState(new Animated.Value(-50));
 
@@ -31,7 +31,7 @@ export default ({ event }) => {
 
   return (
     <AnimatableContainer style={{ opacity: opacity || 1, marginBottom: marginBottom || 25 }}>
-      <Container>
+      <Container onPress={onPress}>
         <Card key={event.id} source={{ uri: event.image }}>
           <Header>
             <Title>{event.title}</Title>
@@ -41,4 +41,4 @@ export default ({ event }) => {
       </Container>
     </AnimatableContainer>
   );
-};
+});

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, Easing } from 'react-native';
 
-export default (props) => {
+export default React.memo((props) => {
   const [opacity] = useState(new Animated.Value(0));
   const [marginBottom] = useState(new Animated.Value(-50));
 
@@ -23,4 +23,4 @@ export default (props) => {
   }, []);
 
   return (<Animated.View {...props} style={{ opacity, marginBottom }} />);
-};
+});

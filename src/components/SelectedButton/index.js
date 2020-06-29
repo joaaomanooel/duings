@@ -4,10 +4,10 @@ import { colors } from '@/constants';
 
 import { Button } from './styles';
 
-export default ({ onPress, name, lib: Icon }) => {
+export default React.memo(({ onPress, name, lib: Icon }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <Button><Icon name={name} size={24} color={colors.lightWhite()} /></Button>
     </TouchableWithoutFeedback>
   );
-};
+});
