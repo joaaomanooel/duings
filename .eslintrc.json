@@ -88,6 +88,7 @@
           "@/mockApi.json",
           "@/components",
           "@/constants",
+          "@/assets",
           "@/screens"
         ]
       }
