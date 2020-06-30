@@ -8,13 +8,18 @@ import { Body, Container, Header, Label, RowContainer, SettingsContainer, Title 
 import FormModal from './FormModal';
 import SettingsContext from './context';
 
-export default ({ route, navigation }) => {
+export default ({ route, navigation, user }) => {
   const [showModal, setShowModal] = useState(false);
-  const [name, setName] = useState('João Manoel');
-  const [email, setEmail] = useState('joaaomanooel@gmail.com');
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const { notificationText = '' } = route.params || {};
 
   const [showNotification, setShowNotification] = useState(false);
+
+  useEffect(() => {
+    setName(user.name);
+    setEmail(user.email);
+  }, [user]);
 
   return (
     <Container>

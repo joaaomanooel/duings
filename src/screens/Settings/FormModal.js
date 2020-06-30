@@ -2,16 +2,20 @@ import React, { useContext, useState } from 'react';
 import { Modal, Input } from '@/components';
 import LottieView from 'lottie-react-native';
 import loader from '@/assets/loader.json';
+import * as UserActions from '@/redux/User';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, FormContainer, LoaderContainer } from './styles';
 
 import EventDetailContext from './context';
 
 export default React.memo(({ navigation }) => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.data);
   const { closeModal, setShowNotification } = useContext(EventDetailContext);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const [loading, setLoading] = useState(false);
 
   const validForm = () => {
@@ -37,11 +41,12 @@ export default React.memo(({ navigation }) => {
     if (!validForm()) return null;
     setLoading(true);
     const notificationText = 'Dados atualizados com secesso.';
+    dispatch(UserActions.setUser({ name, email }));
     return setTimeout(() => {
       closeModal();
       navigation.navigate('Settings', { notificationText });
       setShowNotification(true);
-    }, 3000);
+    }, 2000);
   };
 
   const renderForm = () => (
