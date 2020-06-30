@@ -1,18 +1,24 @@
 import styled from 'styled-components/native';
+import { Button as ButtonCP } from '@/components';
 import { colors, layout } from '@/constants';
 
+const headerHeight = 100 + layout.statusBarHeight;
+const distanceHeacerToBody = 20;
+const bodyHeight = layout.screenHeight - (headerHeight + distanceHeacerToBody);
+
 export const Header = styled.View`
-  height: ${100 + layout.statusBarHeight}px;
+  height: ${headerHeight}px;
+  margin-bottom: ${distanceHeacerToBody}px;
   background-color: ${colors.midWhite()};
   justify-content: space-between;
   flex-direction: row;
-  margin-bottom: 20px;
   align-items: center;
   padding: 20px;
 `;
 
 export const Body = styled.ScrollView`
   background-color: ${colors.midWhite()};
+  min-height: ${bodyHeight}px;
   flex: 1;
 `;
 
@@ -45,4 +51,27 @@ export const Label = styled.Text`
   color: ${colors.black()};
   font-weight: 600;
   font-size: 16px;
+`;
+
+// Form Modal
+export const Button = styled(ButtonCP)`
+  height: 40px;
+  width: 100%;
+  margin: 0;
+`;
+
+export const FormContainer = styled.KeyboardAvoidingView`
+  margin: 20px 5px;
+`;
+
+export const LoaderContainer = styled.View`
+  background-color: ${colors.black(0.5)};
+  height: ${layout.screenHeight * 1.1}px;
+  width: ${layout.screenWidth}px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  elevation: 6;
+  z-index: 9;
+  flex: 1;
 `;
