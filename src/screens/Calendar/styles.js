@@ -29,3 +29,19 @@ export const Cards = styled.View`
   margin-top: 25px;
   flex: 1;
 `;
+
+export const EmptyContainer = styled.View`
+  background-color: ${colors.midWhite()};
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  flex: 1;
+`;
+
+export const EmptyText = styled.Text`
+  color: ${colors.black(0.5)};
+  text-align: center;
+  font-weight: 600;
+  font-size: 36px;
+  margin: 30px 0;
+`;

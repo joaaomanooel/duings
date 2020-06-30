@@ -1,3 +1,6 @@
+import { connect } from 'react-redux';
 import Calendar from './Calendar';
 
-export default Calendar;
+const mapStateToProps = state => ({ calendar: state.calendar.data });
+
+export default connect(mapStateToProps, null)(Calendar);

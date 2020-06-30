@@ -1,31 +1,41 @@
-import React, { useState } from 'react';
-import { Card } from '@/components';
+import React from 'react';
+import { Card, AnimatedView } from '@/components';
+import { colors } from '@/constants';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import eventsMock from '@/mockApi.json';
+import { Body, Cards, Container, Header, Title, EmptyContainer, EmptyText } from './styles';
 
-import { Body, Cards, Container, Header, Title } from './styles';
+export default ({ navigation, calendar }) => {
+  const renderList = () => (
+    <Body showsVerticalScrollIndicator={false}>
+      <Cards>
+        {calendar.map(event => (
+          <Card data={event} onPress={() => navigation.navigate('EventDetail', { event })} />
+        ))}
+      </Cards>
+    </Body>
+  );
 
-export default ({ navigation }) => {
-  const [events] = useState(eventsMock);
-
-  const sortByDate = (a, b) => {
-    if (new Date(a.date) > new Date(b.date)) return 1;
-    if (new Date(a.date) < new Date(b.date)) return -1;
-    return 0;
-  };
+  const renderEmptyContainer = () => (
+    <EmptyContainer>
+      <AnimatedView>
+        <MaterialCommunityIcons
+          style={{ textAlign: 'center' }}
+          name="calendar-remove-outline"
+          color={colors.black(0.5)}
+          size={150}
+        />
+        <EmptyText>Sua agenta está vazia</EmptyText>
+      </AnimatedView>
+    </EmptyContainer>
+  );
 
   return (
     <Container>
       <Header>
         <Title>Agenda</Title>
       </Header>
-      <Body showsVerticalScrollIndicator={false}>
-        <Cards>
-          {events.sort(sortByDate).map(event => (
-            <Card data={event} onPress={() => navigation.navigate('EventDetail', { event })} />
-          ))}
-        </Cards>
-      </Body>
+      {!!calendar.length ? renderList() : renderEmptyContainer()}
     </Container>
   );
 };
