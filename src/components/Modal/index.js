@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Modal, TouchableOpacity } from 'react-native';
+import { Modal, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '@/constants';
 
@@ -9,7 +9,7 @@ export default React.memo(({ close, title, bodyComponent = () => {} }) => {
   return (
     <Background>
       <Modal
-        onRequestClose={() => { Alert.alert('Modal has been closed.'); }}
+        onRequestClose={close}
         animationType="slide"
         hardwareAccelerated
         transparent

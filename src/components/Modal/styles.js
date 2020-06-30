@@ -4,7 +4,7 @@ import { colors, layout } from '@/constants';
 export const Background = styled.View`
   width: ${layout.screenWidth}px;
   height: ${layout.screenHeight}px;
-  background-color: ${colors.black(0.2)};
+  background-color: ${colors.black(0.5)};
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -30,6 +30,4 @@ export const Title = styled.Text`
   font-size: 24px;
 `;
 
-export const Body = styled.View`
-  margin-top: 15px;
-`;
+export const Body = styled.View``;
