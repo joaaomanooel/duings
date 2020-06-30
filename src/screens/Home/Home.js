@@ -1,6 +1,7 @@
-import { CardWithImage } from '@/components';
+import { CardWithImage, Notification } from '@/components';
 import * as GeoLocation from 'expo-location';
 import { colors, images } from '@/constants';
+import { RefreshControl, TouchableOpacity } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
@@ -18,9 +19,17 @@ import {
   Title,
 } from './styles';
 
-export default ({ navigation }) => {
+export default ({ route, navigation }) => {
   const [events, setEvents] = useState(eventsMock);
   const [location, setLocation] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('');
+  const { notify = false, notifyText = '' } = route.params || {};
+
+  const handleRefresh = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 3000);
+  };
 
   const debounceEvent = (fn, wait = 1000, time) => (...args) =>
     clearTimeout(time, time = setTimeout(() => fn(...args), wait)); // eslint-disable-line no-param-reassign, implicit-arrow-linebreak, max-len
@@ -38,6 +47,10 @@ export default ({ navigation }) => {
     .sort(sortSearchedEvents(text)));
 
   useEffect(() => {
+    debounceEvent(handleSearch, search === '' ? 500 : 1000)(search);
+  }, [search]);
+
+  useEffect(() => {
     (async () => {
       const { status } = await GeoLocation.requestPermissionsAsync();
       GeoLocation.installWebGeolocationPolyfill;
@@ -50,10 +63,11 @@ export default ({ navigation }) => {
       // return setLocation(a.data.city);
       return setLocation('Porto Alegre');
     })();
-  });
+  }, []);
 
   return (
     <Container>
+      <Notification show={notify} text={notifyText} />
       <Header>
         <HeaderTop>
           <Logo source={images.logo} resizeMode="contain" />
@@ -68,13 +82,32 @@ export default ({ navigation }) => {
         </HeaderTop>
         <SearchContainer>
           <Feather name="search" color={colors.white()} size={24} />
-          <SearchInput placeholder="Search events" onChangeText={debounceEvent(handleSearch)} />
+          <SearchInput
+            value={search}
+            placeholder="Procurar evento..."
+            onChangeText={setSearch}
+          />
+          {!!search && (
+            <TouchableOpacity onPress={() => setSearch('')}>
+              <MaterialCommunityIcons name="close" size={24} color={colors.white()} />
+            </TouchableOpacity>
+          )}
         </SearchContainer>
       </Header>
-      <Body showsVerticalScrollIndicator={false}>
+      <Body
+        showsVerticalScrollIndicator={false}
+        refreshControl={(
+          <RefreshControl
+            colors={[colors.yellow()]}
+            onRefresh={handleRefresh}
+            refreshing={loading}
+          />
+        )}
+      >
         <Title>Eventos</Title>
         {events.map(event => (
           <CardWithImage
+            key={event.id}
             event={event}
             onPress={() => navigation.navigate('EventDetail', { event })}
           />
