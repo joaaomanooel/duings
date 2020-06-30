@@ -1,3 +1,4 @@
+import { Button as ButtonCP } from '@/components';
 import styled from 'styled-components/native';
 import { colors, layout } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -97,5 +98,51 @@ export const Description = styled.Text`
 export const DescriptionContainer = styled.View`
   margin: 0 25px;
   margin-bottom: 100px;
+  flex: 1;
+`;
+
+// Form Modal
+export const Button = styled(ButtonCP)`
+  height: 40px;
+  width: 100%;
+  margin: 0;
+  ${{
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  }}
+`;
+
+export const FormContainer = styled.KeyboardAvoidingView`
+  margin: 20px 5px;
+`;
+
+export const InputLabel = styled.Text`
+  color: ${colors.black()};
+  font-weight: 500;
+  font-size: 14px;
+`;
+
+export const Input = styled.TextInput`
+  border-color: ${({ error }) => (error ? colors.red(0.5) : colors.black(0.1))};
+  color: ${colors.black()};
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border-width: 1px;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 15px;
+`;
+
+export const LoaderContainer = styled.View`
+  background-color: ${colors.black(0.5)};
+  height: ${layout.screenHeight * 1.1}px;
+  width: ${layout.screenWidth}px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 9;
+  elevation: 6;
   flex: 1;
 `;

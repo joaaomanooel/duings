@@ -1,30 +1,33 @@
-import { colors } from '@/constants';
-import { AnimatedButton } from '@/components';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { format } from 'date-fns';
-import ptBrLocale from 'date-fns/locale/pt-BR';
 import React, { useState } from 'react';
 import { ScrollView, StatusBar } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import ptBrLocale from 'date-fns/locale/pt-BR';
+import { AnimatedButton } from '@/components';
+import { colors } from '@/constants';
+import { format } from 'date-fns';
 import {
   Body,
   Container,
   CurrencyIcon,
+  Description,
+  DescriptionContainer,
   DetailContainer,
+  DetailInfoText,
   Header,
   HeaderTop,
   IconContainer,
   RowView,
+  SubTitle,
   Title,
   TitleContainer,
-  DetailInfoText,
-  SubTitle,
-  Description,
-  DescriptionContainer,
 } from './styles';
+import FormModal from './FormModal';
+import EventDetailContext from './context';
 
 export default ({ route, navigation }) => {
   const { event } = route.params;
   const [showButton, setShowButton] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <Container>
@@ -66,7 +69,10 @@ export default ({ route, navigation }) => {
           </DescriptionContainer>
         </Body>
       </ScrollView>
-      <AnimatedButton show={showButton} text="Checkin" />
+      <AnimatedButton onPress={() => setShowModal(true)} show={showButton} text="Checkin" />
+      <EventDetailContext.Provider value={{ closeModal: () => setShowModal(false) }}>
+        {showModal && (<FormModal navigation={navigation} />)}
+      </EventDetailContext.Provider>
     </Container>
   );
 };
