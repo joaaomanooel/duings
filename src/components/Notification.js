@@ -24,25 +24,23 @@ const Text = styled.Text`
   font-size: 16px;
 `;
 
-export default React.memo(({ text, show = false }) => {
+export default React.memo(({ text, show = false, onFinish = () => {} }) => {
   const [viewTop] = useState(new Animated.Value(-containerHeight * 1.5));
 
-  const animateOut = () => Animated.timing(viewTop, {
+  const animateOut = cb => Animated.timing(viewTop, {
     toValue: -containerHeight * 1.5,
     duration: 1000,
     easing: Easing.back(),
-  }).start();
+  }).start(() => cb);
 
-  const animateIn = () => Animated.timing(viewTop, {
+  const animateIn = cb => Animated.timing(viewTop, {
     toValue: -20,
     duration: 1000,
     easing: Easing.elastic(),
-  }).start();
+  }).start(() => cb);
 
   useEffect(() => {
-    !!show
-      ? (() => { animateIn(); setTimeout(() => animateOut(), 3000); })()
-      : animateOut();
+    !!show ? animateIn(setTimeout(() => animateOut(onFinish()), 3000)) : animateOut(onFinish());
   }, [show]);
 
   return (
