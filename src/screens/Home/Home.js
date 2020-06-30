@@ -4,8 +4,6 @@ import { colors, images } from '@/constants';
 import { RefreshControl, TouchableOpacity } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-import eventsMock from '@/mockApi.json';
 import {
   Body,
   Container,
@@ -19,24 +17,25 @@ import {
   Title,
 } from './styles';
 
-export default ({ route: { params = {} }, navigation }) => {
-  const [events, setEvents] = useState(eventsMock);
+export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
+  const [events, setEvents] = useState(AllEvents);
   const [location, setLocation] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
-  const { notificationText = '' } = params || {};
+  const { notificationText = '' } = route.params || {};
 
   const [showNotification, setShowNotification] = useState(false);
 
-  // useEffect(() => { setShowNotification(notify); }, [notify]);
+  useEffect(() => {
+    (async () => { await getAll(); })();
+  }, []);
 
-  // useEffect(() => { notify = showNotification; }, [showNotification]);
+  useEffect(() => {
+    setEvents(AllEvents);
+  }, [AllEvents]);
 
-  // useEffect(() => { notify = params.notify || false; }, [params.notify]);
-
-  const handleRefresh = () => {
-    setLoading(true);
-    setTimeout(() => setLoading(false), 3000);
+  const handleRefresh = async () => {
+    await getAll();
   };
 
   const debounceEvent = (fn, wait = 1000, time) => (...args) =>
@@ -50,7 +49,7 @@ export default ({ route: { params = {} }, navigation }) => {
     return 0;
   };
 
-  const handleSearch = (text = '') => setEvents(eventsMock
+  const handleSearch = (text = '') => setEvents(AllEvents
     .filter(searchEvent(text))
     .sort(sortSearchedEvents(text)));
 
@@ -69,7 +68,7 @@ export default ({ route: { params = {} }, navigation }) => {
       // const a = await axios.get(`https://api.geodatasource.com/city?key=VOGBRVHJDIZZPSRJW5NYZRD7DOK6GUTY&format=json&lat=${coords.latitude}&lng=${coords.longitude}`);
 
       // return setLocation(a.data.city);
-      return setLocation('Porto Alegre');
+      // return setLocation('Porto Alegre');
     })();
   }, []);
 
