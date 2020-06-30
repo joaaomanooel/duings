@@ -5,11 +5,12 @@ export const Header = styled.View`
   background-color: ${colors.midWhite()};
   justify-content: space-between;
   margin-bottom: 20px;
-  height: ${150 + layout.statusBarHeight}px;
+  height: ${170 + layout.statusBarHeight}px;
   padding: 20px;
 `;
 
 export const HeaderTop = styled.SafeAreaView`
+  margin: 15px 0;
   justify-content: space-between;
   flex-direction: row;
   flex: 1;
