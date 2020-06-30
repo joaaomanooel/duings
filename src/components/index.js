@@ -5,5 +5,6 @@ module.exports = ({
   Notification: require('./Notification').default,
   Button: require('./Button').default,
   Modal: require('./Modal').default,
+  Input: require('./Input').default,
   Card: require('./Card').default,
 });

@@ -23,9 +23,7 @@ export default React.memo(({ close, title, bodyComponent = () => {} }) => {
                 <MaterialCommunityIcons name="close" size={24} color={colors.black()} />
               </TouchableOpacity>
             </Header>
-            <Body>
-              {bodyComponent()}
-            </Body>
+            <Body>{bodyComponent()}</Body>
           </Container>
         </Background>
       </Modal>
