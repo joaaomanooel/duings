@@ -81,7 +81,7 @@ export default ({ route, navigation }) => {
           </LocationContainer>
         </HeaderTop>
         <SearchContainer>
-          <Feather name="search" color={colors.white()} size={24} />
+          <Feather name="search" color={colors.black(0.9)} size={24} />
           <SearchInput
             value={search}
             placeholder="Procurar evento..."
@@ -89,7 +89,7 @@ export default ({ route, navigation }) => {
           />
           {!!search && (
             <TouchableOpacity onPress={() => setSearch('')}>
-              <MaterialCommunityIcons name="close" size={24} color={colors.white()} />
+              <MaterialCommunityIcons name="close" size={20} color={colors.black()} />
             </TouchableOpacity>
           )}
         </SearchContainer>

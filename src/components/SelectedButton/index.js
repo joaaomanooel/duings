@@ -7,7 +7,7 @@ import { Button } from './styles';
 export default React.memo(({ onPress, name, lib: Icon }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <Button><Icon name={name} size={24} color={colors.lightWhite()} /></Button>
+      <Button><Icon name={name} size={24} color={colors.black(0.9)} /></Button>
     </TouchableWithoutFeedback>
   );
 });

@@ -45,7 +45,7 @@ export const SearchContainer = styled.View`
 export const SearchInput = styled.TextInput.attrs(() => ({
   placeholderTextColor: colors.black(0.5),
 }))`
-  color: ${colors.midWhite()};
+  color: ${colors.black(0.9)};
   font-weight: bold;
   margin-left: 10px;
   font-size: 14px;

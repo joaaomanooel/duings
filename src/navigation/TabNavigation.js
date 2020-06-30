@@ -43,7 +43,7 @@ export default () => {
       tabBarOptions={{
         style: { backgroundColor: colors.lightWhite(), borderTopColor: colors.lightWhite(0.2) },
         inactiveTintColor: colors.black(),
-        activeTintColor: colors.yellow(),
+        activeTintColor: colors.black(),
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Início' }} />
