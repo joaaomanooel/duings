@@ -36,7 +36,7 @@ export default React.memo(({ data = {}, size = 1, onPress }) => {
             </BottomView>
             <BottomView>
               <BottomText contentSize={size}>
-                {handleLocation('Santa Vitória dos Palmares')}
+                {handleLocation('Porto Alegre')}
               </BottomText>
               <Icon name="map-marker" contentSize={size} />
             </BottomView>
