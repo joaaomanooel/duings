@@ -24,7 +24,7 @@ import {
 import FormModal from './FormModal';
 import EventDetailContext from './context';
 
-export default ({ route, navigation }) => {
+export default ({ route, navigation, calendar = [] }) => {
   const { event, setShowNotification } = route.params;
   const [showButton, setShowButton] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -69,9 +69,15 @@ export default ({ route, navigation }) => {
           </DescriptionContainer>
         </Body>
       </ScrollView>
-      <AnimatedButton onPress={() => setShowModal(true)} show={showButton} text="Checkin" />
+      {(!!calendar.find(e => e.id !== event.id) || !calendar.length) && (
+        <AnimatedButton onPress={() => setShowModal(true)} show={showButton} text="Checkin" />
+      )}
       <EventDetailContext.Provider
-        value={{ closeModal: () => setShowModal(false), setShowNotification }}
+        value={{
+          closeModal: () => setShowModal(false),
+          setShowNotification,
+          currentEvent: event,
+        }}
       >
         {showModal && (<FormModal navigation={navigation} />)}
       </EventDetailContext.Provider>

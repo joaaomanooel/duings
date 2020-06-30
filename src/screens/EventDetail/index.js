@@ -1,3 +1,6 @@
+import { connect } from 'react-redux';
 import EventDetail from './EventDetail';
 
-export default EventDetail;
+const mapStateToProps = state => ({ calendar: state.calendar.data });
+
+export default connect(mapStateToProps)(EventDetail);
