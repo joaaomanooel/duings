@@ -10,7 +10,11 @@ export default ({ navigation, calendar }) => {
     <Body showsVerticalScrollIndicator={false}>
       <Cards>
         {calendar.map(event => (
-          <Card data={event} onPress={() => navigation.navigate('EventDetail', { event })} />
+          <Card
+            onPress={() => navigation.navigate('EventDetail', { event })}
+            key={Math.random()}
+            data={event}
+          />
         ))}
       </Cards>
     </Body>

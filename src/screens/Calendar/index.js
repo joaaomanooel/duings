@@ -3,4 +3,4 @@ import Calendar from './Calendar';
 
 const mapStateToProps = state => ({ calendar: state.calendar.data });
 
-export default connect(mapStateToProps, null)(Calendar);
+export default connect(mapStateToProps)(Calendar);
