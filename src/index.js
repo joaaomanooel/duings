@@ -6,7 +6,7 @@ import Navigation from './navigation/StackNavigation';
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" animated backgroundColor={colors.midWhite()} />
+      <StatusBar barStyle="dark-content" translucent animated backgroundColor={colors.midWhite(0)} />
       <Navigation />
     </>
   );
