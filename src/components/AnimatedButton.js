@@ -8,8 +8,8 @@ const Container = styled(Animated.View)`
   bottom: ${layout.scale() * 15}px;
   width: ${layout.screenWidth};
   position: absolute;
-  elevation: 15;
-  z-index: 15;
+  elevation: 5;
+  z-index: 5;
 `;
 
 export default React.memo(({ show = true, ...props }) => {

@@ -14,9 +14,9 @@ const Button = styled.TouchableOpacity.attrs({ hitSlop: layout.largeHitSlop, act
 
 const Background = styled(LinearGradient).attrs(() => ({
   colors: [colors.lightYellow(), colors.yellow()],
-  start: [1, 0.2],
+  start: [1, 0.5],
 }))`
-  padding: ${layout.scale() * 15}px ${layout.scale() * 20}px;
+  padding: ${layout.scale() * 10}px ${layout.scale() * 20}px;
   justify-content: center;
   align-items: center;
   flex: 1;
