@@ -1,18 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { Modal, Input } from '@/components';
 import LottieView from 'lottie-react-native';
+import * as UserActions from '@/redux/User';
 import loader from '@/assets/loader.json';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, FormContainer, LoaderContainer } from './styles';
 
 import EventDetailContext from './context';
 
 export default React.memo(({ navigation }) => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.data);
   const { closeModal, setShowNotification } = useContext(EventDetailContext);
   const [emailError, setEmailError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user.name);
 
   const validForm = () => {
     let hasError = false;
@@ -37,6 +41,7 @@ export default React.memo(({ navigation }) => {
     if (!validForm()) return null;
     setLoading(true);
     const notificationText = 'Checkin realizado com secesso.';
+    dispatch(UserActions.setUser({ name, email }));
     return setTimeout(() => {
       closeModal();
       // navigation.navigate('Home', { notify: false, notificationText });
