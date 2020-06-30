@@ -25,7 +25,7 @@ import FormModal from './FormModal';
 import EventDetailContext from './context';
 
 export default ({ route, navigation }) => {
-  const { event } = route.params;
+  const { event, setShowNotification } = route.params;
   const [showButton, setShowButton] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
@@ -70,7 +70,9 @@ export default ({ route, navigation }) => {
         </Body>
       </ScrollView>
       <AnimatedButton onPress={() => setShowModal(true)} show={showButton} text="Checkin" />
-      <EventDetailContext.Provider value={{ closeModal: () => setShowModal(false) }}>
+      <EventDetailContext.Provider
+        value={{ closeModal: () => setShowModal(false), setShowNotification }}
+      >
         {showModal && (<FormModal navigation={navigation} />)}
       </EventDetailContext.Provider>
     </Container>

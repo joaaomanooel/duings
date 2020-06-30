@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { Modal } from '@/components';
+import { Modal, Input } from '@/components';
 import LottieView from 'lottie-react-native';
 import loader from '@/assets/loader.json';
-import { Button, InputLabel, Input, FormContainer, LoaderContainer } from './styles';
+import { Button, FormContainer, LoaderContainer } from './styles';
 
 import EventDetailContext from './context';
 
 export default React.memo(({ navigation }) => {
-  const { closeModal } = useContext(EventDetailContext);
-  const [nameError, setNameError] = useState(false);
+  const { closeModal, setShowNotification } = useContext(EventDetailContext);
   const [emailError, setEmailError] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [nameError, setNameError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
 
   const validForm = () => {
     let hasError = false;
@@ -36,23 +36,28 @@ export default React.memo(({ navigation }) => {
     clearError();
     if (!validForm()) return null;
     setLoading(true);
-    const notifyText = 'Checkin realizado com secesso.';
-    return setTimeout(() => navigation.navigate('Home', { notify: true, notifyText }), 5000);
+    const notificationText = 'Checkin realizado com secesso.';
+    return setTimeout(() => {
+      closeModal();
+      // navigation.navigate('Home', { notify: false, notificationText });
+      navigation.navigate('Home', { notificationText });
+      setShowNotification(true);
+    }, 3000);
   };
 
   const renderForm = () => (
     <>
       <FormContainer>
-        <InputLabel>Nome:</InputLabel>
         <Input
+          label="Name:"
           placeholder="Ex: João da Silva"
           onChangeText={setName}
           error={nameError}
           value={name}
         />
 
-        <InputLabel>Email:</InputLabel>
         <Input
+          label="Email:"
           placeholder="Ex: joao@email.com"
           onChangeText={setEmail}
           error={emailError}

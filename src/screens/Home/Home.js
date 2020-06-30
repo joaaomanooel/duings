@@ -19,12 +19,20 @@ import {
   Title,
 } from './styles';
 
-export default ({ route, navigation }) => {
+export default ({ route: { params = {} }, navigation }) => {
   const [events, setEvents] = useState(eventsMock);
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
-  const { notify = false, notifyText = '' } = route.params || {};
+  const { notificationText = '' } = params || {};
+
+  const [showNotification, setShowNotification] = useState(false);
+
+  // useEffect(() => { setShowNotification(notify); }, [notify]);
+
+  // useEffect(() => { notify = showNotification; }, [showNotification]);
+
+  // useEffect(() => { notify = params.notify || false; }, [params.notify]);
 
   const handleRefresh = () => {
     setLoading(true);
@@ -67,7 +75,11 @@ export default ({ route, navigation }) => {
 
   return (
     <Container>
-      <Notification show={notify} text={notifyText} />
+      <Notification
+        onFinish={() => { setShowNotification(false); }}
+        show={showNotification}
+        text={notificationText}
+      />
       <Header>
         <HeaderTop>
           <Logo source={images.logo} resizeMode="contain" />
@@ -109,7 +121,7 @@ export default ({ route, navigation }) => {
           <CardWithImage
             key={event.id}
             event={event}
-            onPress={() => navigation.navigate('EventDetail', { event })}
+            onPress={() => navigation.navigate('EventDetail', { event, setShowNotification })}
           />
         ))}
       </Body>

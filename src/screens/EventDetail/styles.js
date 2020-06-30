@@ -106,33 +106,10 @@ export const Button = styled(ButtonCP)`
   height: 40px;
   width: 100%;
   margin: 0;
-  ${{
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0,
-    shadowRadius: 0,
-    elevation: 0,
-  }}
 `;
 
 export const FormContainer = styled.KeyboardAvoidingView`
   margin: 20px 5px;
-`;
-
-export const InputLabel = styled.Text`
-  color: ${colors.black()};
-  font-weight: 500;
-  font-size: 14px;
-`;
-
-export const Input = styled.TextInput`
-  border-color: ${({ error }) => (error ? colors.red(0.5) : colors.black(0.1))};
-  color: ${colors.black()};
-  margin-bottom: 30px;
-  border-radius: 10px;
-  border-width: 1px;
-  margin-top: 10px;
-  font-size: 14px;
-  padding: 15px;
 `;
 
 export const LoaderContainer = styled.View`
@@ -142,7 +119,7 @@ export const LoaderContainer = styled.View`
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 9;
   elevation: 6;
+  z-index: 9;
   flex: 1;
 `;
