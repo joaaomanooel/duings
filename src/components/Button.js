@@ -9,7 +9,6 @@ const Button = styled.TouchableOpacity.attrs({ hitSlop: layout.largeHitSlop, act
   margin: ${layout.scale() * 30}px;
   align-self: center;
   overflow: hidden;
-  ${layout.shadow}
 `;
 
 const Background = styled(LinearGradient).attrs(() => ({

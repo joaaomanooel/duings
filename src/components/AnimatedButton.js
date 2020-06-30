@@ -33,7 +33,7 @@ export default React.memo(({ show = true, ...props }) => {
 
   return (
     <Container style={{ bottom: viewBottom }}>
-      <LargeButton {...props} />
+      <LargeButton {...props} style={layout.shadow} />
     </Container>
   );
 });
