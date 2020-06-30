@@ -16,10 +16,10 @@ export const Container = styled.TouchableOpacity.attrs(() => ({
 }))``;
 
 export const Card = styled.ImageBackground.attrs(() => ({ imageStyle: { borderRadius: 20 } }))`
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   background-color: ${colors.yellow(0.8)};
   border-radius: 20px;
-  min-height: 200px;
+  min-height: ${layout.scale() * 180}px;
   overflow: hidden;
 `;
 
