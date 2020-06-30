@@ -16,7 +16,7 @@ export const Header = styled.View`
   padding: 20px;
 `;
 
-export const Body = styled.ScrollView`
+export const Body = styled.View`
   background-color: ${colors.midWhite()};
   min-height: ${bodyHeight}px;
   flex: 1;
@@ -51,6 +51,12 @@ export const Label = styled.Text`
   color: ${colors.black()};
   font-weight: 600;
   font-size: 16px;
+`;
+
+export const Version = styled.Text`
+  color: ${colors.black(0.7)};
+  text-align: center;
+  bottom: ${layout.statusBarHeight + 70}px;
 `;
 
 // Form Modal

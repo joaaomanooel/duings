@@ -88,9 +88,11 @@
       "error",
       {
         "ignore": [
+          "@/root/package.json",
           "@/mockApi.json",
           "@/components",
           "@/constants",
+          "@/services",
           "@/screens",
           "@/assets",
           "@/redux",

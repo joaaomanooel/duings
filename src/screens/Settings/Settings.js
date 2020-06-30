@@ -3,7 +3,18 @@ import { colors } from '@/constants';
 import { Notification } from '@/components';
 import { TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Body, Container, Header, Label, RowContainer, SettingsContainer, Title } from './styles';
+import { version } from '@/root/package.json';
+
+import {
+  Body,
+  Container,
+  Header,
+  Label,
+  RowContainer,
+  SettingsContainer,
+  Title,
+  Version,
+} from './styles';
 
 import FormModal from './FormModal';
 import SettingsContext from './context';
@@ -45,6 +56,7 @@ export default ({ route, navigation, user }) => {
             <Label>{email}</Label>
           </RowContainer>
         </SettingsContainer>
+        <Version>{`v${version}`}</Version>
       </Body>
       <SettingsContext.Provider
         value={{ closeModal: () => setShowModal(false), setShowNotification }}
