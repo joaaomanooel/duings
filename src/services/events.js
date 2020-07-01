@@ -1,4 +1,6 @@
 import Api from './api';
 
-export const getAll = () => Api.get('/events');
-export const checkin = data => Api.post('/checkin', data);
+const BASE_URL = 'events';
+
+export const getAll = () => Api.get(BASE_URL);
+export const checkin = data => Api.post(`${BASE_URL}/checkin`, data);
