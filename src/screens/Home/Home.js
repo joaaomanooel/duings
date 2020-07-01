@@ -17,18 +17,18 @@ import {
   CardsContainer,
 } from './styles';
 
-export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
+export default React.memo(({
+  route, navigation, events: AllEvents, getAll, loading, location, getLocation,
+}) => {
   const [events, setEvents] = useState(AllEvents);
-  const [location, setLocation] = useState(null);
-  // const [loading, setLoading] = useState(false);
+  const [geoLocation, setGeoLocation] = useState(location);
   const [search, setSearch] = useState('');
   const { notificationText = '' } = route.params || {};
-
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
-    (async () => { await getAll(); })();
-  }, []);
+    setGeoLocation(location);
+  }, [location]);
 
   useEffect(() => {
     setEvents(AllEvents);
@@ -58,17 +58,21 @@ export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
   }, [search]);
 
   useEffect(() => {
+    (async () => { await getAll(); })();
+  }, []);
+
+  useEffect(() => {
+    (async () => { await getAll(); })();
+
     (async () => {
       const { status } = await GeoLocation.requestPermissionsAsync();
       GeoLocation.installWebGeolocationPolyfill;
-      if (status !== 'granted') return null;
-
-      // const { coords } = await GeoLocation.getCurrentPositionAsync({});
-      // eslint-disable-next-line max-len
-      // const a = await axios.get(`https://api.geodatasource.com/city?key=VOGBRVHJDIZZPSRJW5NYZRD7DOK6GUTY&format=json&lat=${coords.latitude}&lng=${coords.longitude}`);
-
-      // return setLocation(a.data.city);
-      return setLocation('Porto Alegre');
+      if (status === 'granted') {
+        const { coords } = await GeoLocation.getCurrentPositionAsync({});
+        if (coords.latitude !== location.latitude || coords.longitude !== location.longitude) {
+          await getLocation({ latitude: coords.latitude, longitude: coords.longitude });
+        }
+      }
     })();
   }, []);
 
@@ -83,9 +87,9 @@ export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
         <HeaderTop>
           <Logo source={images.logo} resizeMode="contain" />
           <LocationContainer>
-            {location && (
+            {(!!geoLocation && (!!geoLocation.city_district || geoLocation.city)) && (
               <>
-                <Location>{location}</Location>
+                <Location>{geoLocation.city_district || geoLocation.city}</Location>
                 <MaterialCommunityIcons name="map-marker" size={24} color={colors.yellow()} />
               </>
             )}
@@ -95,6 +99,7 @@ export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
           <Feather name="search" color={colors.black(0.9)} size={24} />
           <SearchInput
             value={search}
+            autoCorrect={false}
             placeholder="Procurar evento..."
             onChangeText={setSearch}
           />
@@ -127,4 +132,4 @@ export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
       </Body>
     </Container>
   );
-};
+});
