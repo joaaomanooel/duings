@@ -34,12 +34,14 @@ export default React.memo(({ data = {}, size = 1, onPress }) => {
                 {format(date, 'HH:mm')}
               </BottomText>
             </BottomView>
-            <BottomView>
-              <BottomText contentSize={size}>
-                {handleLocation('Porto Alegre')}
-              </BottomText>
-              <Icon name="map-marker" contentSize={size} />
-            </BottomView>
+            {!!data.location && (
+              <BottomView>
+                <BottomText contentSize={size}>
+                  {handleLocation(data.location)}
+                </BottomText>
+                <Icon name="map-marker" contentSize={size} />
+              </BottomView>
+            )}
           </BottomView>
         </RightView>
       </Container>
