@@ -14,7 +14,7 @@ import {
   Logo,
   SearchContainer,
   SearchInput,
-  Title,
+  CardsContainer,
 } from './styles';
 
 export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
@@ -68,7 +68,7 @@ export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
       // const a = await axios.get(`https://api.geodatasource.com/city?key=VOGBRVHJDIZZPSRJW5NYZRD7DOK6GUTY&format=json&lat=${coords.latitude}&lng=${coords.longitude}`);
 
       // return setLocation(a.data.city);
-      // return setLocation('Porto Alegre');
+      return setLocation('Porto Alegre');
     })();
   }, []);
 
@@ -115,14 +115,15 @@ export default ({ route, navigation, events: AllEvents, getAll, loading }) => {
           />
         )}
       >
-        <Title>Eventos</Title>
-        {events.map(event => (
-          <CardWithImage
-            key={event.id}
-            event={event}
-            onPress={() => navigation.navigate('EventDetail', { event, setShowNotification })}
-          />
-        ))}
+        <CardsContainer>
+          {events.map(event => (
+            <CardWithImage
+              key={event.id}
+              event={event}
+              onPress={() => navigation.navigate('EventDetail', { event, setShowNotification })}
+            />
+          ))}
+        </CardsContainer>
       </Body>
     </Container>
   );

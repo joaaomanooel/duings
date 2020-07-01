@@ -4,21 +4,18 @@ import { colors, layout } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const headerHeight = 250;
-const distanceHeacerToBody = 20;
-const bodyHeight = layout.screenHeight - (headerHeight + distanceHeacerToBody);
+const headerHeight = 300 + layout.statusBarHeight;
+const bodyHeight = layout.screenHeight - headerHeight;
 
 export const Container = styled.View`
-  background-color: ${colors.darkWhite()};
+  background-color: ${colors.midWhite()};
   flex: 1;
 `;
 
 export const Header = styled.ImageBackground`
   background-color: ${colors.yellow(0.8)};
-  margin-bottom: ${distanceHeacerToBody}px;
   height: ${headerHeight}px;
   overflow: hidden;
-  ${layout.shadow}
 `;
 
 export const HeaderTop = styled(LinearGradient).attrs(() => ({
@@ -33,8 +30,8 @@ export const HeaderTop = styled(LinearGradient).attrs(() => ({
 export const Body = styled.View`
   background-color: ${colors.midWhite()};
   min-height: ${bodyHeight}px;
-  flex: 1;
   ${layout.shadow}
+  flex: 1;
 `;
 
 export const Title = styled.Text`

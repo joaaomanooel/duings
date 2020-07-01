@@ -26,11 +26,8 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const Title = styled.Text`
-  color: ${colors.black()};
-  font-weight: bold;
-  font-size: 18px;
-  margin: 20px;
+export const CardsContainer = styled.View`
+  margin: 25px 0;
 `;
 
 export const SearchContainer = styled.View`
