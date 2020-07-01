@@ -12,6 +12,7 @@ import {
   Description,
   DescriptionContainer,
   DetailContainer,
+  DetailIcon,
   DetailInfoText,
   Header,
   HeaderTop,
@@ -50,12 +51,14 @@ export default ({ route, navigation, calendar = [] }) => {
           </TitleContainer>
           <DetailContainer>
             <SubTitle>Detalhes</SubTitle>
+            {(event.location && event.location.formatted) && (
+              <RowView>
+                <DetailIcon name="map-marker-outline" />
+                <DetailInfoText>{`${event.location.formatted}`}</DetailInfoText>
+              </RowView>
+            )}
             <RowView>
-              <MaterialCommunityIcons name="map-marker-outline" size={24} color={colors.yellow()} />
-              <DetailInfoText>Av. da Azenha, 173, Porto Alegre</DetailInfoText>
-            </RowView>
-            <RowView>
-              <MaterialCommunityIcons name="clock-outline" size={24} color={colors.yellow()} />
+              <DetailIcon name="clock-outline" />
               <DetailInfoText>{format(event.date, 'PPPp', { locale: ptBrLocale })}</DetailInfoText>
             </RowView>
             <RowView>

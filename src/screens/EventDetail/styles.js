@@ -76,6 +76,11 @@ export const CurrencyIcon = styled(MaterialCommunityIcons).attrs(() => ({
   margin: 1px;
  `;
 
+export const DetailIcon = styled(MaterialCommunityIcons).attrs(() => ({
+  color: colors.yellow(),
+  size: 24,
+}))``;
+
 export const DetailInfoText = styled.Text`
   color: ${colors.black()};
   padding: 0 10px;
