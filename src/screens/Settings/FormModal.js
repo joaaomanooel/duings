@@ -58,11 +58,15 @@ export default React.memo(({ navigation }) => {
           onChangeText={setName}
           error={nameError}
           value={name}
+          autoFocus
         />
 
         <Input
           label="Email:"
+          autoCompleteType="email"
+          textContentType="emailAddress"
           placeholder="Ex: joao@email.com"
+          keyboardType="email-address"
           onChangeText={setEmail}
           error={emailError}
           value={email}
