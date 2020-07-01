@@ -11,8 +11,11 @@ const sortByDate = (a = {}, b = {}) => {
 };
 
 export default handleActions({
-  [addEvent]: (state, { payload }) => ({
-    ...state,
-    data: [...state.data, payload].sort(sortByDate),
-  }),
+  [addEvent]: (state, { payload }) => {
+    if (state.data.find(e => payload.id === e.id)) return (state);
+    return ({
+      ...state,
+      data: [...state.data, payload].sort(sortByDate),
+    });
+  },
 }, INITIAL_STATE);
