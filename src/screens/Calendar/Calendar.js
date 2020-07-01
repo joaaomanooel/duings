@@ -13,7 +13,7 @@ export default ({ navigation, calendar }) => {
           <Card
             onPress={() => navigation.navigate('EventDetail', { event })}
             key={Math.random()}
-            data={event}
+            data={{ ...event, location: event.location ? event.location.components.city : null }}
           />
         ))}
       </Cards>
